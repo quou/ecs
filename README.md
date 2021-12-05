@@ -1,6 +1,8 @@
 # ECS
 A lightweight but complete ECS implementation for modern C++.
 
+<img src="media/balls.gif" alt="drawing" width="200"/>
+
 # Features
  - Cache friendly design implemented on top of an
 [EnTT](https://github.com/skypjack/entt)-like sparse set.

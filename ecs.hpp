@@ -225,6 +225,7 @@ namespace ecs {
 		Entity_Handle* entities = nullptr;
 		u64 entity_capacity = 0;
 		u64 entity_count = 0;
+		u64 alive_count = 0;
 
 		Entity_ID avail_id = null_entity_id;
 
@@ -410,7 +411,7 @@ namespace ecs {
 		}
 
 		u64 count() const {
-			return entity_count;
+			return alive_count;
 		}
 
 		template <typename T>
@@ -854,6 +855,8 @@ namespace ecs {
 
 			const Entity_Version nv = (Entity_Version)internal::get_entity_version(handle) + 1;
 			world->release_entity(handle, nv);
+
+			world->alive_count--;
 		}
 
 		template <typename T>
@@ -1061,6 +1064,8 @@ namespace ecs {
 	}
 
 	Entity World::new_entity() {
+		alive_count++;
+
 		if (avail_id == null_entity_id) {
 			return Entity(generate_entity(), this);
 		} else {

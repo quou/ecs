@@ -836,6 +836,7 @@ namespace ecs {
 	public:
 		Entity() {}
 		Entity(Entity_Handle h, World* w) : handle(h), world(w) {}
+		Entity(const Entity& other) : handle(other.handle), world(other.world) {}
 
 		static Entity null() { return Entity(null_handle, nullptr); }
 

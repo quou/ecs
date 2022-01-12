@@ -99,8 +99,7 @@ namespace ecs {
 
 		template <typename T>
 		inline static u64 get_component_id() {
-			static u64 id = get_unique_component_id();
-			return id;
+			return typeid(T).hash_code();
 		}
 
 		template <typename T>
